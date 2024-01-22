@@ -32,16 +32,16 @@
         <div class="row">
             <div class="col-md-4">
                 <h3>To Do</h3>
-                <!-- Add tasks here -->
+                <div id="todo-column" class="task-column" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
             </div>
             <div class="col-md-4">
                 <h3>Doing</h3>
-                <!-- Tasks in progress here -->
+                <div id="doing-column" class="task-column" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
             </div>
             <div class="col-md-4">
                 <h3>Done</h3>
-                <!-- Tasks completed here -->
-                <button class="btn btn-danger" id="clearButton">Clear</button>
+                <div id="done-column" class="task-column" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <button class="btn btn-danger mt-2" id="clearButton">Clear</button>
             </div>
         </div>
     </div>
