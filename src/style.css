@@ -1,5 +1,20 @@
+.col-centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+
+h2 {
+    text-align: start;
+}
+
+
 #clock {
     font-size: 20px;
+    text-align: end;
 }
 
 /* Add your existing styles here */
