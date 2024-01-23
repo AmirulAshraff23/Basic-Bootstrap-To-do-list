@@ -17,14 +17,14 @@ function updateGreetingMessage() {
     let greeting;
 
     if (hours < 12) {
-        greeting = 'Good morning';
+        greeting = 'Good Morning';
     } else if (hours < 18) {
-        greeting = 'Good afternoon';
+        greeting = 'Good Afternoon';
     } else {
-        greeting = 'Good evening';
+        greeting = 'Good Evening';
     }
 
-    document.getElementById('greeting-message').innerText = `${greeting}, userName! It is now displayTime. What will you do today?`;
+    document.getElementById('greeting-message').innerText = `${greeting}! It is now ${id="clock"}. What will you do today?`;
 }
 
 // Update clock and greeting message every second
