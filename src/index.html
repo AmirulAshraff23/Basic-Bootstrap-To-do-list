@@ -27,7 +27,7 @@
             <div class="alert alert-primary mt-3" role="alert">
                 <p id="greeting-message"></p>
             </div>
-            
+
         </div>
     </div>
 
@@ -37,7 +37,13 @@
             <div class="col-md-4">
                 <h3>To Do</h3>
                 <div id="todo-column" class="task-column" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+                <!-- Add Task Button -->
+                <div class="container mt-3">
+                    <button class="btn btn-success" id="addTaskButton">Add Task +</button>
+                </div>
             </div>
+
             <div class="col-md-4">
                 <h3>Doing</h3>
                 <div id="doing-column" class="task-column" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
@@ -46,19 +52,17 @@
                 <h3>Done</h3>
                 <div id="done-column" class="task-column" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                 <button class="btn btn-danger mt-2" id="clearButton">Clear</button>
+                <!-- Archive Button -->
+
+                <button class="btn btn-secondary" id="archiveButton">Archive</button>
+
             </div>
         </div>
     </div>
 
-    <!-- Add Task Button -->
-    <div class="container mt-3">
-        <button class="btn btn-success" id="addTaskButton">+</button>
-    </div>
 
-    <!-- Archive Button -->
-    <div class="container mt-3">
-        <button class="btn btn-secondary" id="archiveButton">Archive</button>
-    </div>
+
+
 
     <script src="app.js"></script>
 
