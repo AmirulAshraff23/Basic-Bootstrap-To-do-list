@@ -13,6 +13,10 @@ function updateClock() {
 function updateGreetingMessage() {
     const now = new Date();
     const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
+
+    const formattedTime = `${hours}:${minutes}`;
 
     let greeting;
 
@@ -24,7 +28,7 @@ function updateGreetingMessage() {
         greeting = 'Good Evening';
     }
 
-    document.getElementById('greeting-message').innerText = `${greeting}! It is now ${id="clock"}. What will you do today?`;
+    document.getElementById('greeting-message').innerText = `${greeting}! It is now ${formattedTime}. What will you do today?`;
 }
 
 // Update clock and greeting message every second
