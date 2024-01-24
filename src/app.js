@@ -81,13 +81,13 @@ function createWidget(column, taskName) {
                     Move To
                 </button>
                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                    <a class="dropdown-item" href="#">To Do</a>
-                    <a class="dropdown-item" href="#">Doing</a>
-                    <a class="dropdown-item" href="#">Done</a>
+                    <a class="dropdown-item" href="#" onclick="moveWidget(this, 'To Do')">To Do</a>
+                    <a class="dropdown-item" href="#" onclick="moveWidget(this, 'Doing')">Doing</a>
+                    <a class="dropdown-item" href="#" onclick="moveWidget(this, 'Done')">Done</a>
                 </div>
             </div>
 
-            <button class="btn btn-outline-primary btn-sm" onclick="moveWidget(this)">Move To</button>
+            <button class="btn btn-outline-primary btn-sm" onclick="moveWidgetOld(this)">Move To</button>
             <button class="btn btn-outline-secondary btn-sm" onclick="deleteWidget(this)">Delete</button>
         </div>
     `;
@@ -115,7 +115,16 @@ function editWidget(button) {
     widget.querySelector('p').innerText = taskName;
 }
 
-function moveWidget(button) {
+function moveWidget(link, newColumn) {
+    const widget = link.closest('.widget');
+    const targetColumn = document.getElementById(newColumn.toLowerCase() + '-column');
+    if (widget && targetColumn) {
+        targetColumn.appendChild(widget);
+    }
+}
+
+
+function moveWidgetOld(button) {
     const widget = button.parentNode.parentNode;
     const newColumn = prompt('Move to column (To Do, Doing, Done):');
     const targetColumn = document.getElementById(newColumn.toLowerCase() + '-column');
