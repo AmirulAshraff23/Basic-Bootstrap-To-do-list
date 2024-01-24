@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const doneColumn = document.getElementById('done-column');
 
     // Add a sample widget to the "To Do" column
-    createWidget(todoColumn, 'Water the plants');
+    createWidget(todoColumn, 'Insert Your Task with the Edit Button');
 
     // Set up event listeners for buttons
     document.getElementById('addTaskButton').addEventListener('click', function () {
@@ -69,18 +69,46 @@ function createWidget(column, taskName) {
     const widget = document.createElement('div');
     widget.className = 'widget';
     widget.draggable = true;
-    widget.innerHTML = `
+
+    widget.innerHTML =
+
+
+        `
         <p>${taskName}</p>
         <div class="btn-group">
-            <button class="btn btn-warning btn-sm" onclick="editWidget(this)">Edit</button>
-            <button class="btn btn-info btn-sm" onclick="moveWidget(this)">Move To</button>
-            <button class="btn btn-danger btn-sm" onclick="deleteWidget(this)">Delete</button>
+            <button class="btn btn-outline-primary btn-sm" onclick="editWidget(this)">Edit</button>
+
+            <div class="btn-group" role="group">
+                <button id="btnGroupDrop1" type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Move To
+                </button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    <a class="dropdown-item" href="#">To Do</a>
+                    <a class="dropdown-item" href="#">Doing</a>
+                    <a class="dropdown-item" href="#">Done</a>
+                </div>
+            </div>
+
+            <button class="btn btn-outline-primary btn-sm" onclick="moveWidget(this)">Move To</button>
+            <button class="btn btn-outline-secondary btn-sm" onclick="deleteWidget(this)">Delete</button>
         </div>
     `;
+
+
+
     widget.addEventListener('dragstart', function (event) {
         event.dataTransfer.setData('text/plain', taskName);
     });
     column.appendChild(widget);
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const dropdownTrigger = widget.querySelector('.dropdown-toggle');
+        new bootstrap.Dropdown(dropdownTrigger);
+    });
+
+    /*const dropdownTrigger = widget.querySelector('.dropdown-toggle');
+    new bootstrap.Dropdown(dropdownTrigger);*/
 }
 
 function editWidget(button) {
