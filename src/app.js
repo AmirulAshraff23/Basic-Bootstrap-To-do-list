@@ -70,16 +70,13 @@ function createWidget(column, taskName) {
     widget.className = 'widget';
     widget.draggable = true;
 
-    widget.innerHTML =
-
-
-        `
+    widget.innerHTML = `
         <p>${taskName}</p>
         <div class="btn-group">
             <button class="btn btn-outline-primary btn-sm" onclick="editWidget(this)">Edit</button>
 
             <div class="btn-group" role="group">
-                <button id="btnGroupDrop1" type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown"
+                <button id="btnGroupDrop1" type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     Move To
                 </button>
@@ -95,21 +92,22 @@ function createWidget(column, taskName) {
         </div>
     `;
 
-
-
     widget.addEventListener('dragstart', function (event) {
         event.dataTransfer.setData('text/plain', taskName);
     });
     column.appendChild(widget);
 
-    document.addEventListener('DOMContentLoaded', function () {
+    /*document.addEventListener('DOMContentLoaded', function () {
         const dropdownTrigger = widget.querySelector('.dropdown-toggle');
         new bootstrap.Dropdown(dropdownTrigger);
-    });
-
-    /*const dropdownTrigger = widget.querySelector('.dropdown-toggle');
-    new bootstrap.Dropdown(dropdownTrigger);*/
+    });*/
 }
+
+
+function toggleDropdown(button) {
+    new bootstrap.Dropdown(button);
+}
+
 
 function editWidget(button) {
     const widget = button.parentNode.parentNode;
