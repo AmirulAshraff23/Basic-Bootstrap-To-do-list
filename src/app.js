@@ -68,7 +68,17 @@ document.addEventListener('DOMContentLoaded', function () {
 function createWidget(column, taskName) {
     const widget = document.createElement('div');
     widget.className = 'widget';
-    widget.draggable = true;
+    /*widget.draggable = true;
+
+    widget.addEventListener('dragstart', function (event) {
+        event.dataTransfer.setData('text/plain', taskName);
+        widget.classList.add('widget-being-dragged');
+    });
+    
+    widget.addEventListener('dragend', function () {
+        widget.classList.remove('widget-being-dragged');
+    });*/
+    
 
     widget.innerHTML = `
         <p>${taskName}</p>
@@ -87,7 +97,6 @@ function createWidget(column, taskName) {
                 </div>
             </div>
 
-            <button class="btn btn-outline-primary btn-sm" onclick="moveWidgetOld(this)">Move To</button>
             <button class="btn btn-outline-secondary btn-sm" onclick="deleteWidget(this)">Delete</button>
         </div>
     `;
@@ -118,10 +127,13 @@ function editWidget(button) {
 function moveWidget(link, newColumn) {
     const widget = link.closest('.widget');
     const targetColumn = document.getElementById(newColumn.toLowerCase() + '-column');
-    if (widget && targetColumn) {
+    
+    // Check if the widget is not already a child of the target column
+    if (widget && targetColumn && widget.parentNode !== targetColumn) {
         targetColumn.appendChild(widget);
     }
 }
+
 
 
 function moveWidgetOld(button) {
@@ -148,13 +160,28 @@ function archiveTasks() {
     alert('Archiving tasks...');
 }
 
-function allowDrop(event) {
+/*function allowDrop(event) {
     event.preventDefault();
 }
 
 function drop(event) {
     event.preventDefault();
     const taskName = event.dataTransfer.getData('text/plain');
+    const draggedWidget = document.querySelector('.widget-being-dragged');
+
+    if (draggedWidget) {
+        const targetColumn = event.target.closest('.task-column');
+        moveWidgetToColumn(draggedWidget, targetColumn);
+    } else {
+        const targetColumn = event.target.closest('.task-column');
+        createWidget(targetColumn, taskName);
+    }
+}*/
+
+
+/*function drop(event) {
+    event.preventDefault();
+    const taskName = event.dataTransfer.getData('text/plain');
     const targetColumn = event.target.closest('.task-column');
     createWidget(targetColumn, taskName);
-}
+}*/
