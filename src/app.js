@@ -52,8 +52,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Set up event listeners for buttons
     document.getElementById('addTaskButton').addEventListener('click', function () {
-        const taskName = prompt('Enter task:');
-        createWidget(todoColumn, taskName);
+        // Assuming you have an input field with id 'taskInput'
+        const taskInput = document.getElementById('taskInput');
+
+        // Get the value from the input field
+        const taskName = taskInput.value.trim();
+
+        // Check if the input is not empty before creating the widget
+        if (taskName !== "") {
+            createWidget(todoColumn, taskName);
+
+            // Clear the input field after creating the widget (optional)
+            taskInput.value = "";
+        }
     });
 
     document.getElementById('clearButton').addEventListener('click', function () {
@@ -78,7 +89,7 @@ function createWidget(column, taskName) {
     widget.addEventListener('dragend', function () {
         widget.classList.remove('widget-being-dragged');
     });*/
-    
+
 
     widget.innerHTML = `
         <p>${taskName}</p>
@@ -127,7 +138,7 @@ function editWidget(button) {
 function moveWidget(link, newColumn) {
     const widget = link.closest('.widget');
     const targetColumn = document.getElementById(newColumn.toLowerCase() + '-column');
-    
+
     // Check if the widget is not already a child of the target column
     if (widget && targetColumn && widget.parentNode !== targetColumn) {
         targetColumn.appendChild(widget);
