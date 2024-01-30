@@ -131,6 +131,60 @@ function toggleDropdown(button) {
 
 function editWidget(button) {
     const widget = button.parentNode.parentNode;
+
+    // Create an input field for editing
+    const editInput = document.createElement('input');
+    editInput.type = 'text';
+    editInput.value = widget.querySelector('p').innerText;
+    editInput.classList.add('form-control', 'edit-input');
+
+    // Replace the paragraph with the input field
+    widget.querySelector('p').replaceWith(editInput);
+
+    // Create a save button for the editing
+    const saveButton = document.createElement('button');
+    saveButton.classList.add('btn', 'btn-success', 'btn-sm', 'ms-2');
+    saveButton.innerText = 'Save';
+    saveButton.onclick = function () {
+        saveEdit(widget, editInput);
+    };
+
+    // Append the save button
+    widget.querySelector('.btn-group').appendChild(saveButton);
+
+    // Remove the edit button
+    button.remove();
+}
+
+function saveEdit(widget, editInput) {
+    const updatedTaskName = editInput.value.trim();
+
+    // Check if the edited task name is not empty
+    if (updatedTaskName !== "") {
+        // Replace the input field with a new paragraph containing the updated task name
+        const newParagraph = document.createElement('p');
+        newParagraph.innerText = updatedTaskName;
+        editInput.replaceWith(newParagraph);
+
+        // Create a new edit button
+        const editButton = document.createElement('button');
+        editButton.classList.add('btn', 'btn-outline-primary', 'btn-sm');
+        editButton.innerText = 'Edit';
+        editButton.onclick = function () {
+            editWidget(this);
+        };
+
+        // Insert the new edit button before the save button
+        widget.querySelector('.btn-group').insertBefore(editButton, widget.querySelector('.btn-success'));
+
+        // Remove the save button
+        widget.querySelector('.btn-success').remove();
+    }
+}
+
+
+function editWidgetOld(button) {
+    const widget = button.parentNode.parentNode;
     const taskName = prompt('Edit task:', widget.querySelector('p').innerText);
     widget.querySelector('p').innerText = taskName;
 }
